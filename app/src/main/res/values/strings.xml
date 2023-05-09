@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">ReminderApp</string>
+    <string name="Title_Home">Location Based Reminders</string>
+    <string name="str_enter_location">Enter the location:</string>
+    <string name="str_username">What would you liked to be called?</string>
+    <string name="str_rem_title">What is the reminder you want to set?</string>
+    <string name="title_activity_reminder_records">reminderRecords</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="location_permission_denied">Location Permission Denied</string>
+    <string name="permission_required_toast">Permission Required Toast</string>
+    <string name="permission_rationale_location">Permission Rationale Location</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="txt_proceed">PROCEED</string>
+    <string name="str_act">What would you like to do?</string>
+    <string name="txt_distanceString_str">Distance from location to activate reminder (in km):</string>
+</resources>
