@@ -72,8 +72,7 @@ public class MapsActivity extends AppCompatActivity implements ActivityCompat.On
 
         getLocationPermission();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
+
 
             return;
         }
@@ -117,17 +116,9 @@ public class MapsActivity extends AppCompatActivity implements ActivityCompat.On
                 mMap.addMarker(markerOptions);
             }
         });
-//        mMap.setOnMapClickListener();
+
 
     }
-
-//    @Override
-//    public void onMapReady(GoogleMap googleMap) {
-//        mMap = googleMap;
-//        mMap.setOnMyLocationButtonClickListener(this);
-//        mMap.setOnMyLocationClickListener(this);
-//        enableMyLocation();
-//    }
 
     private void getLocationPermission() {
         /*
@@ -155,10 +146,6 @@ public class MapsActivity extends AppCompatActivity implements ActivityCompat.On
             // Permission to access the location is missing. Show rationale and request permission
             PermissionUtils.requestPermission(this, LOCATION_REQUEST_CODE,
                     Manifest.permission.ACCESS_FINE_LOCATION, true);
-//            requestPermissionLauncher.launch(permission.ACCESS_FINE_LOCATION);
-//            ActivityCompat.requestPermissions(this,
-//                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-//                    LOCATION_REQUEST_CODE);
         }
     }
     //

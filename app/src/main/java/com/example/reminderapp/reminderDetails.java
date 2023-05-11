@@ -6,6 +6,7 @@ public class reminderDetails {
     private String reminderLocation;
     private String latitude;
     private String longitude;
+    private String description;
 
     public String getReminderName() {
         return reminderName;
@@ -13,6 +14,14 @@ public class reminderDetails {
 
     public void setReminderName(String reminderName) {
         this.reminderName = reminderName;
+    }
+
+    public String getReminderDescription() {
+        return description;
+    }
+
+    public void setReminderDescription(String reminderDescription) {
+        this.description =reminderDescription;
     }
 
     public String getReminderLocation() {
@@ -39,12 +48,13 @@ public class reminderDetails {
         this.longitude = longitude;
     }
 
-    public reminderDetails(String reminderName, String reminderLocation, String latitude, String longitude)
+    public reminderDetails(String description,String reminderName, String reminderLocation, String latitude, String longitude)
     {
         this.reminderLocation=reminderLocation;
         this.reminderName=reminderName;
         this.latitude=latitude;
         this.longitude=longitude;
+        this.description=description;
     }
 
 }

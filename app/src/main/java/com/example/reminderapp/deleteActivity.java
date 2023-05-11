@@ -13,10 +13,11 @@ import android.widget.Toast;
 
 public class deleteActivity extends AppCompatActivity {
 
-    private TextView remNameEdt, remLocEdt, remLatEdt, remLongEdt;
+    private TextView remNameEdt, remLocEdt, remLatEdt, remLongEdt,remDescEdt;
+
     private DBHandler dbHandler;
     private Button deleteBtn;
-    String remName,remLoc,remLat,remLong;
+    String remName,remLoc,remLat,remLong,remDesc;
 
     public void onBackPressed(){
         startActivity(new Intent(deleteActivity.this,WelcomePage.class));
@@ -24,27 +25,30 @@ public class deleteActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete);
         remNameEdt=findViewById(R.id.remNameEdt);
         remLocEdt=findViewById(R.id.remLocEdt);
         remLatEdt=findViewById(R.id.remLatEdt);
         remLongEdt=findViewById(R.id.remLongEdt);
+        remDescEdt=findViewById(R.id.remDescEdt);
 
         deleteBtn=findViewById(R.id.deleteBtn);
 
         dbHandler=new DBHandler(deleteActivity.this);
 
-
         remName = getIntent().getStringExtra("Reminder Name");
         remLoc = getIntent().getStringExtra("Location");
         remLat = getIntent().getStringExtra("Latitude");
         remLong = getIntent().getStringExtra("Longitude");
+        remDesc= getIntent().getStringExtra("Description");
 
         remNameEdt.setText(remName);
         remLocEdt.setText(remLoc);
         remLatEdt.setText(remLat);
         remLongEdt.setText(remLong);
+        remDescEdt.setText(remDesc);
 
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +61,7 @@ public class deleteActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which){
-                                dbHandler.deleteReminder(remName,"1234567890");
+                                dbHandler.deleteReminder(remName,"12345678900");
                                 Toast.makeText(deleteActivity.this, "Reminder deleted!", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(deleteActivity.this,viewReminders.class));
                             }

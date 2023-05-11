@@ -37,19 +37,13 @@ public class MainActivity extends AppCompatActivity {
         bt_signups=findViewById(R.id.bt_signups);
          dbHandler= new DBHandler(this);
 
-//        if(SaveSharedPreference.getPhoneNo(MainActivity.this).length() != 0)
-//        {
-//
-//        }
-        //startActivity(new Intent(MainActivity.this,WelcomePage.class));
-
         bt_signups.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(MainActivity.this,SignUp.class));
-                if(!dbHandler.checkRecord("1234567890")) {
+
+                if(!dbHandler.checkRecord("12345678900")) {
                     System.out.println("New record");
-                    dbHandler.addNewRecord("1234567890");
+                    dbHandler.addNewRecord("12345678900");
                     startActivity(new Intent(MainActivity.this,WelcomePage.class));
                 }
                 else {

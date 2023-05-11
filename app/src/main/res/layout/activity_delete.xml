@@ -44,6 +44,14 @@
       android:gravity="center"
       android:textSize="24sp"
       android:hint="Longitude" />
+  <TextView
+      android:id="@+id/remDescEdt"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="30dp"
+      android:gravity="center"
+      android:textSize="24sp"
+      android:hint="Description" />
 
   <Button
       android:id="@+id/deleteBtn"

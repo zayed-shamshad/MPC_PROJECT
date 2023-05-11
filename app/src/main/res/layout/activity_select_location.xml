@@ -3,57 +3,70 @@
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="10dp"
-
+    android:padding="20dp"
     android:layout_height="match_parent"
+    android:background="@drawable/reminder_bg"
     tools:context=".selectLocation">
-
 
     <LinearLayout
         android:id="@+id/outerlayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-
+        android:layout_height="match_parent"
         android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/txt_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/str_enter_location"
-        android:textSize="20sp"
-        />
-
-    <TextView
-        android:id="@+id/txt_location2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/str_rem_title"
-        android:textSize="20sp"
-       />
+        <TextView
+            android:id="@+id/txt_location2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_rem_title"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="3dp" />
 
 
-    <EditText
-        android:id="@+id/et_rem"
-        android:layout_width="284dp"
-        android:layout_height="46dp"
-        android:hint="Pick up medicines"
-        />
-    <Button
-        android:id="@+id/location_button"
-        android:layout_width="160dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="5dp"
-        android:text="Choose Location" />
+        <EditText
+            android:id="@+id/et_rem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Eg: Pick up medicines"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="55dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/txt_description"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Description"-->
+<!--            android:textSize="20sp"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginBottom="5dp" />-->
+
+        <EditText
+            android:id="@+id/et_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:hint="Add description"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="5dp" />
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_add_rem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-       />
+        <Button
+            android:id="@+id/location_button"
+            android:layout_width="160dp"
+            android:layout_height="80dp"
+            android:text="Choose Location"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
+        <Button
+            android:id="@+id/btn_add_rem"
+            android:layout_width="160dp"
+            android:layout_height="60dp"
+            android:text="Add +"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
     </LinearLayout>
-    </RelativeLayout>
-
+</RelativeLayout>

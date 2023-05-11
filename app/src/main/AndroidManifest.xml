@@ -6,20 +6,21 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
-
+        android:theme="@style/Theme.ReminderApp"
+        >
         <activity
             android:name=".MapsActivity"
             android:exported="false" />
@@ -29,10 +30,6 @@
             android:name=".selectLocation"
             android:exported="false" />
         <activity android:name=".WelcomePage" />
-        <activity
-            android:name=".setName"
-            android:exported="false" />
-        <activity android:name=".SignUp" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -58,10 +55,10 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCB3Rlj45I-89cjTTTiVRKPLwV_hGwi29U" /> <!-- roshni: key from console.developers google -->
+            android:value="AIzaSyCB3Rlj45I-89cjTTTiVRKPLwV_hGwi29U" />
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" /> <!-- roshni: maps api https://developers.google.com/maps/documentation/android-sdk/config -->
+            android:value="@integer/google_play_services_version" />
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

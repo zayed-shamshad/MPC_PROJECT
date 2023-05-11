@@ -38,6 +38,7 @@ public class ReminderRVAdapter extends RecyclerView.Adapter<ReminderRVAdapter.Vi
         holder.reminderPlaceTV.setText("Location: "+modal.getReminderLocation());
         holder.latitudeTV.setText("Latitude: "+modal.getLatitude());
         holder.longitudeTV.setText("Longitude: "+modal.getLongitude());
+        holder.descriptionTV.setText("Description: "+modal.getReminderDescription());
 
 
 
@@ -50,6 +51,7 @@ public class ReminderRVAdapter extends RecyclerView.Adapter<ReminderRVAdapter.Vi
                 i.putExtra("Location", modal.getReminderLocation());
                 i.putExtra("Latitude", modal.getLatitude());
                 i.putExtra("Longitude", modal.getLongitude());
+                i.putExtra("Description", modal.getReminderDescription());
 
                 context.startActivity(i);
             }
@@ -66,14 +68,16 @@ public class ReminderRVAdapter extends RecyclerView.Adapter<ReminderRVAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
 
 
-        private TextView reminderNameTV, reminderPlaceTV, latitudeTV, longitudeTV;
+        private TextView reminderNameTV, reminderPlaceTV, latitudeTV, longitudeTV, descriptionTV;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            descriptionTV=itemView.findViewById(R.id.idReminderDescription);
             reminderNameTV = itemView.findViewById(R.id.idReminderName);
             reminderPlaceTV = itemView.findViewById(R.id.idReminderPlace);
             latitudeTV = itemView.findViewById(R.id.idLatitude);
             longitudeTV = itemView.findViewById(R.id.idLongitude);
+
         }
     }
 }

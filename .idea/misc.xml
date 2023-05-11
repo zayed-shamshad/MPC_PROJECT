@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/MPC_PROJECT/Proximity-Reminder/app/src/main/res/layout/activity_delete.xml" value="0.25" />
+        <entry key="..\:/MPC_PROJECT/Proximity-Reminder/app/src/main/res/layout/activity_main.xml" value="0.11979166666666667" />
+        <entry key="..\:/MPC_PROJECT/Proximity-Reminder/app/src/main/res/layout/activity_maps.xml" value="0.25" />
+        <entry key="..\:/MPC_PROJECT/Proximity-Reminder/app/src/main/res/layout/activity_select_location.xml" value="0.264" />
+        <entry key="..\:/MPC_PROJECT/Proximity-Reminder/app/src/main/res/layout/activity_view_reminders.xml" value="0.209375" />
+        <entry key="..\:/MPC_PROJECT/Proximity-Reminder/app/src/main/res/layout/activity_welcome_page.xml" value="0.11979166666666667" />
+        <entry key="..\:/MPC_PROJECT/Proximity-Reminder/app/src/main/res/layout/reminder_rv_item.xml" value="0.25" />
         <entry key="..\:/Users/Roshni/AndroidStudioProjects/Location-Based-Reminders/app/src/main/res/layout/activity_main.xml" value="0.259375" />
         <entry key="..\:/Users/Roshni/AndroidStudioProjects/Location-Based-Reminders/app/src/main/res/layout/activity_select_location.xml" value="0.264" />
         <entry key="..\:/Users/Roshni/AndroidStudioProjects/Location-Based-Reminders/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />

@@ -25,12 +25,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class ConfirmAddress extends DialogFragment implements
         android.view.View.OnClickListener, OnMapReadyCallback {
 
-    public Activity c;
-    public Dialog d;
-    public Button yes, no;
 
     private GoogleMap mMap;
-    MapView mapView;
+
     public Double Lat;
     public Double Long;
     String Address;
@@ -39,7 +36,6 @@ public class ConfirmAddress extends DialogFragment implements
     TextView myLongitude;
     Button SelectBtn;
     Button ChangeBtn;
-    private String TvFileName, TvInfo, TvLocation;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,7 +120,7 @@ public class ConfirmAddress extends DialogFragment implements
                 new LatLng(Lat,Long), 14f);
         mMap.animateCamera(location);
         mMap.addMarker(markerOptions);
-//        Log.d("status","success");
+
     }
 
 
