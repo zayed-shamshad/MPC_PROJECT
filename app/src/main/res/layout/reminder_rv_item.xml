@@ -1,69 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="20dp"
-    android:elevation="10dp"
-    app:cardBackgroundColor="#FFFFFF"
-    app:cardCornerRadius="5dp">
-
-    <LinearLayout
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/idReminderName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#DFDFEF"
-            android:gravity="center"
-            android:padding="3dp"
-            android:text="Reminder Name"
-            android:textColor="@color/purple_700"
-            android:textStyle="bold" />
+        android:layout_margin="20dp"
+        android:elevation="10dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            android:layout_margin="3dp"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/idReminderPlace"
-                android:layout_width="0dp"
+                android:id="@+id/idReminderName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/redAccent"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="Reminder Name"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/idReminderDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:text="Reminder Info"
+                    android:textColor="@color/black"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/redAccent"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/idReminderPlace"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="3dp"
+                    android:text="Reminder Place"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/idLatitude"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+
                 android:padding="3dp"
-                android:text="Reminder Place"
+                android:text="Latitude"
                 android:textColor="@color/black" />
 
-
-
+            <TextView
+                android:id="@+id/idLongitude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/redAccent"
+                android:padding="3dp"
+                android:text="Longitude"
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/idLatitude"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#DFDFEF"
-            android:padding="3dp"
-            android:text="Latitude"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/idLongitude"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="3dp"
-            android:text="Longitude"
-            android:textColor="@color/black" />
-
-    </LinearLayout>
-
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>

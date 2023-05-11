@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/reminderlist_bg"
     tools:context=".viewReminders">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -24,7 +25,7 @@
         android:layout_marginEnd="67dp"
         android:layout_marginBottom="223dp"
         android:textAlignment="center"
-        android:textColor="#673AB7"
+        android:textColor="@color/redAccent400"
         android:textSize="24sp"
         android:textStyle="bold|italic" />
 

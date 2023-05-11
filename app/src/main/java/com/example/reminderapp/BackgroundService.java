@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +24,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
+
+import com.google.android.gms.location.Geofence;
+import com.google.android.gms.location.GeofencingClient;
+import com.google.android.gms.location.GeofencingRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 
 public class BackgroundService extends Service implements LocationListener {
@@ -41,12 +50,9 @@ public class BackgroundService extends Service implements LocationListener {
         return super.onStartCommand(intent,flags,startId);
     }
 
-
     @Override
     public void onCreate()
     {
-
-        System.out.println("Service has started");
 
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -64,11 +70,11 @@ public class BackgroundService extends Service implements LocationListener {
             notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
             notificationChannel.enableVibration(true);
             mNotificationManager.createNotificationChannel(notificationChannel);
+
         }
 
 
         notificationBuilder = new NotificationCompat.Builder(BackgroundService.this, NOTIFICATION_CHANNEL_ID);
-
 
         notificationBuilder.setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_ALL)
@@ -79,17 +85,14 @@ public class BackgroundService extends Service implements LocationListener {
                 .setContentText("Disable GPS permissions to prevent this.")
                 .setContentInfo("Info");
 
-
         startForeground(1,notificationBuilder.build());
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
 
         if (ActivityCompat.checkSelfPermission(BackgroundService.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) ;
 
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, (long) 0.0f, 0.0f, (LocationListener) this);
         locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, null);
-
     }
 
     @Override
@@ -98,41 +101,34 @@ public class BackgroundService extends Service implements LocationListener {
     }
 
 
-
-
     @Override
     public void onLocationChanged(@NonNull Location location) {
-//float dist;
-        if(lat2!=location.getLatitude() && long2!=location.getLongitude())
+
+        if(lat2!=location.getLatitude() || long2!=location.getLongitude())
         {
             lat2 = location.getLatitude(); //current lat
             long2 = location.getLongitude(); //current long
-
-            System.out.println("Location changed function called!");
-
-            //Toast.makeText(this, "location changed a bit", Toast.LENGTH_SHORT).show();
-            boolean answer_needed=dbHandler.checkIfInRange(lat2,long2,"1234567890");
+            double dist=location.getLatitude()-lat2;
+            double dist2=location.getLatitude()-long2;
+            boolean answer_needed=dbHandler.checkIfInRange(lat2,long2,"12345678900");
+            //Toast.makeText(this, "location changed a bit : "+dist+" "+dist2, Toast.LENGTH_SHORT).show();
 
             if(answer_needed) {
-
-                System.out.println("Hey there, "+dbHandler.findUserName("1234567890")+ ". You have a reminder!");
-
-
                 notificationBuilder.setAutoCancel(true)
                         .setDefaults(Notification.DEFAULT_ALL)
                         .setWhen(System.currentTimeMillis())
                         .setSmallIcon(R.drawable.ic_launcher_foreground)
                         .setTicker("Hearty365")
-                        .setContentTitle("Hey there, "+dbHandler.findUserName("1234567890")+ ". You have a reminder!")
+                        .setContentTitle("Hey there, "+ "You have a reminder!")
                         .setContentText(showToasts)
                         .setContentInfo("Info");
 
                mNotificationManager.notify(2, notificationBuilder.build());
-
-               //Toast.makeText(BackgroundService.this, "Reminder notification sent!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Reached the location", Toast.LENGTH_SHORT).show();
             }
         }
     }
+
     @Override
     public void onProviderEnabled(@NonNull String provider) {
 

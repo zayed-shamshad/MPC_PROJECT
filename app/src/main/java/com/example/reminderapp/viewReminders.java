@@ -34,10 +34,10 @@ public class viewReminders extends AppCompatActivity {
         reminderDetailsArrayList=new ArrayList<>();
         dbHandler=new DBHandler(viewReminders.this);
 
-        reminderDetailsArrayList=dbHandler.readReminders("1234567890");
+        reminderDetailsArrayList=dbHandler.readReminders("12345678900");
         if(reminderDetailsArrayList.isEmpty()){
             txt_empty.setText("Nothing to see here.\nAdd a reminder first!");
-            //Toast.makeText(viewReminders.this, "Add a reminder first :)", Toast.LENGTH_SHORT).show();
+
         }
         reminderRVAdapter=new ReminderRVAdapter(reminderDetailsArrayList,viewReminders.this);
         remindersRV=findViewById(R.id.idRVReminders);
@@ -76,7 +76,7 @@ public class viewReminders extends AppCompatActivity {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which){
-                            dbHandler.deleteReminder(remName,"1234567890");
+                            dbHandler.deleteReminder(remName,"12345678900");
                             reminderDetailsArrayList.remove(viewHolder.getAdapterPosition());
                             reminderRVAdapter.notifyDataSetChanged();
                             Toast.makeText(viewReminders.this, "Reminder deleted", Toast.LENGTH_SHORT).show();
@@ -93,15 +93,6 @@ public class viewReminders extends AppCompatActivity {
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
 
-            //alert dialog inclusion end
-
-
-            //dbHandler.deleteReminder(remName,SaveSharedPreference.getPhoneNo(viewReminders.this));
-
-            //reminderDetailsArrayList.remove(viewHolder.getAdapterPosition());
-
-
-            //reminderRVAdapter.notifyDataSetChanged();
 
         }
     };

@@ -13,12 +13,11 @@ import java.util.ArrayList;
 public class DBHandler extends SQLiteOpenHelper {
     private Context mContext;
 
-
-
-    public static final String DB_NAME ="info_users";
+    public static final String DB_NAME ="info_users1";
     public static int DB_VERSION=1;
     public static final String TABLE_NAME="USERS";
     public static final String PHONE_NO="PHONE_NO";
+    public static final String DESCRIPTION="DESCRIPTION";
     public static final String USER_NAME="USER_NAME";
 
     public static final String TABLE_REMINDER="REMINDERS";
@@ -40,10 +39,9 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query="CREATE TABLE "+TABLE_NAME+" ("+PHONE_NO+" TEXT,"+USER_NAME+" TEXT)";
         db.execSQL(query);
-        String query2 = "CREATE TABLE "+TABLE_REMINDER+" ("+REMINDER_NAME+" TEXT,"+LATITUDE+" TEXT,"+LONGITUDE+" TEXT,"+PLACE_NAME+" TEXT,"+PHONE_NO+" TEXT REFERENCES "+TABLE_NAME+")";
-        //String query2 = "CREATE TABLE "+TABLE_REMINDER+" ("+REMINDER_NAME+" TEXT,"+LATITUDE+" REAL,"+LATITUDE+" TEXT,"+LONGITUDE+" TEXT,"+PLACE_NAME+" TEXT,"+PHONE_NO+" TEXT REFERENCES "+TABLE_NAME+")";
+        String query2 = "CREATE TABLE "+TABLE_REMINDER+" ("+REMINDER_NAME+" TEXT,"+LATITUDE+" TEXT,"+LONGITUDE+" TEXT,"+PLACE_NAME+" TEXT,"+DESCRIPTION+" TEXT,"+PHONE_NO+" TEXT REFERENCES "+TABLE_NAME+")";
         db.execSQL(query2);
-
+        Toast.makeText(mContext, "tables created"+DB_NAME, Toast.LENGTH_SHORT).show();
     }
 
     public void deleteReminder(String remName, String phonenos) {
@@ -62,7 +60,6 @@ public class DBHandler extends SQLiteOpenHelper {
         if(cursorNeeded.moveToFirst()){
             do{
                 Location.distanceBetween(lat2,long2,Double.parseDouble(cursorNeeded.getString(0)),Double.parseDouble(cursorNeeded.getString(1)),WelcomePage.distance);
-                //float dist = query for getting distance
                 if(WelcomePage.distance[0]<=30) //if(WelcomePage.distance[0]<=dist)
                 {
                     answer_needed=true;
@@ -82,12 +79,12 @@ public class DBHandler extends SQLiteOpenHelper {
     public ArrayList<reminderDetails> readReminders(String phonenos)
     {
         SQLiteDatabase db=this.getReadableDatabase();
-        String MY_QUERY= "SELECT REMINDER_NAME, PLACE_NAME, LATITUDE, LONGITUDE FROM USERS U INNER JOIN REMINDERS R ON U.PHONE_NO=R.PHONE_NO WHERE R.PHONE_NO=?";
+        String MY_QUERY= "SELECT REMINDER_NAME, PLACE_NAME, LATITUDE, LONGITUDE, DESCRIPTION FROM USERS U INNER JOIN REMINDERS R ON U.PHONE_NO=R.PHONE_NO WHERE R.PHONE_NO=?";
         Cursor cursorReminders=db.rawQuery(MY_QUERY,new String[]{phonenos});
         ArrayList<reminderDetails> reminderDetailsArrayList=new ArrayList<>();
         if(cursorReminders.moveToFirst()){
             do {
-                reminderDetailsArrayList.add(new reminderDetails(cursorReminders.getString(0), cursorReminders.getString(1), cursorReminders.getString(2), cursorReminders.getString(3)));
+                reminderDetailsArrayList.add(new reminderDetails(cursorReminders.getString(4),cursorReminders.getString(0), cursorReminders.getString(1), cursorReminders.getString(2), cursorReminders.getString(3)));
             }while(cursorReminders.moveToNext());
             }
         cursorReminders.close();
@@ -95,19 +92,22 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
-    public void addReminderRecord(String remname,String remplace, String latitude, String longitude, String phonenos)
+    public void addReminderRecord(String description ,String remname,String remplace, String latitude, String longitude, String phonenos)
     {
+        if(description.length()==0){
+            description="none";
+        }
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues values=new ContentValues();
         values.put(PHONE_NO,phonenos);
         values.put(REMINDER_NAME,remname);
-        //values.put(DISTANCE, distance);
+        values.put(DESCRIPTION,description);
         values.put(PLACE_NAME,remplace);
         values.put(LATITUDE,latitude);
         values.put(LONGITUDE,longitude);
         db.insert(TABLE_REMINDER,null,values);
         System.out.println("Records added");
-        Toast.makeText( mContext, "record added", Toast.LENGTH_SHORT).show();
+        Toast.makeText( mContext, "Reminder added", Toast.LENGTH_SHORT).show();
         db.close();
     }
 
@@ -122,54 +122,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public String findUserName(String phone)
-    {
-        SQLiteDatabase db=this.getReadableDatabase();
-        Cursor cursorPhones=db.rawQuery("SELECT "+USER_NAME+" FROM "+TABLE_NAME+" WHERE "+PHONE_NO+" =? ",new String[]{phone+""});
-        String str = null;
-        int x;
-        if(cursorPhones!=null && cursorPhones.getCount()>0)
-        {
-            cursorPhones.moveToFirst();
-            x=cursorPhones.getColumnIndexOrThrow("USER_NAME");
-            str=cursorPhones.getString(x);
-            System.out.println("NAME OF THE USER LOGGED IN: "+str);
-        }
-        cursorPhones.close();
-        return str;
-    }
 
-    public boolean checkUserName(String phone)
-    {
-
-        SQLiteDatabase db=this.getReadableDatabase();
-        Cursor cursorPhones=db.rawQuery("SELECT "+USER_NAME+" FROM "+TABLE_NAME+" WHERE "+PHONE_NO+" =? ",new String[]{phone+""});
-        String str = null;
-        int x;
-        if(cursorPhones!=null && cursorPhones.getCount()>0)
-        {
-            cursorPhones.moveToFirst();
-            x=cursorPhones.getColumnIndexOrThrow("USER_NAME");
-            str=cursorPhones.getString(x);
-        }
-        if((str == null) || str.isEmpty())
-        {
-            return false;
-        }
-        cursorPhones.close();
-        return true;
-    }
-
-    public void setUserName(String phone, String usersname)
-    {
-        SQLiteDatabase db=this.getWritableDatabase();
-
-        ContentValues newValues=new ContentValues();
-        newValues.put(USER_NAME,usersname);
-        db.update(TABLE_NAME,newValues,PHONE_NO+"=?",new String[]{phone});
-        db.close();
-
-    }
 
     public boolean checkRecord(String phone)
     {

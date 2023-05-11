@@ -54,7 +54,6 @@ public class WelcomePage extends AppCompatActivity  {
     private Button btn_create_rem, btn_view_rem, btn_logout;
     public static float distance[];
 
-
     @Override
     public void onBackPressed() {
         Intent i = new Intent(Intent.ACTION_MAIN);
@@ -69,18 +68,14 @@ public class WelcomePage extends AppCompatActivity  {
         setContentView(R.layout.activity_welcome_page);
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
 
-
         dbHandler = new DBHandler(WelcomePage.this);
 
-
-        //usersname = dbHandler.findUserName(SaveSharedPreference.getPhoneNo(WelcomePage.this));
         usersname="zaid";
-        helloUserView = findViewById(R.id.helloUserView);
-        helloUserView.setText("Hey there, " + usersname + "!");
+        //helloUserView = findViewById(R.id.helloUserView);
 
         btn_create_rem = findViewById(R.id.btn_create_rem);
         btn_view_rem = findViewById(R.id.btn_view_rem);
-        //btn_logout = findViewById(R.id.btn_logout);
+
 
         distance = new float[2];
 
@@ -89,43 +84,15 @@ public class WelcomePage extends AppCompatActivity  {
         btn_view_rem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(WelcomePage.this, "VIEWING REMINDERS!!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(WelcomePage.this, viewReminders.class));
             }
         });
 
-//        btn_logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(WelcomePage.this);
-//                builder.setMessage("Are you sure you want to log out?");
-//                builder.setTitle("Alert!");
-//                builder.setCancelable(false);
-//                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        startActivity(new Intent(WelcomePage.this, MainActivity.class));
-//                        SaveSharedPreference.clearPhoneNo(WelcomePage.this);
-//                        Toast.makeText(WelcomePage.this, "User logged out.", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//                builder.setNegativeButton("No",
-//                        new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                dialog.cancel();
-//                            }
-//                        });
-//                AlertDialog alertDialog = builder.create();
-//                alertDialog.show();
-//            }
-//        });
 
         btn_create_rem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(WelcomePage.this, selectLocation.class));
-                //Toast.makeText(WelcomePage.this, "Create reminder selected", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -135,7 +102,7 @@ public class WelcomePage extends AppCompatActivity  {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case 1: {
-                // If request is cancelled, the result arrays are empty.
+
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
@@ -143,13 +110,11 @@ public class WelcomePage extends AppCompatActivity  {
 
 
                 } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
+
                 }
                 return;
             }
-            // other 'case' lines to check for other
-            // permissions this app might request
+
         }
     }
 
